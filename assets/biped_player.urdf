@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<robot name="player">
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 1"/>
+  </material>
+
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+
+  <link name="world">
+    <inertial>
+      <mass value="0"/>
+      <inertia ixx="0.2125" ixy="-0.005" ixz="0.0225" iyy="0.205" iyz="0.045" izz="0.0125"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </inertial>
+        </link>
+
+  <link name="torso">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.48"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0.0 0"/>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.48"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0.0 0"/>
+      <contact_coefficients mu="0.08" />
+    </collision>
+    <inertial>
+      <mass value="70"/>
+      <inertia ixx="0.2404" ixy="-0.01" ixz="-0.048" iyy="0.2404" iyz="-0.048" izz="0.02"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0"/>
+    </inertial>
+  </link>
+
+  <joint name="torso_to_world" type="fixed">
+    <parent link="world"/>
+    <child link="torso"/>
+    <origin rpy="0 0 0" xyz="0 0 1.4"/>
+  </joint>
+
+  <link name="r_upperleg">
+    <visual>
+      <geometry>
+        <box size="0.05 0.1 .45"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.018 0. -0.21715"/>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.1 .45"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.018 -0.0 -0.21715"/>
+      <contact_coefficients mu="0.08" />
+    </collision>
+    <inertial>
+      <mass value="5"/>
+      <inertia ixx="0.2125" ixy="-0.005" ixz="0.0225" iyy="0.205" iyz="0.045" izz="0.0125"/>
+      <origin rpy="0 0 0" xyz="0.018 -0.0 -0.21715"/>
+    </inertial>
+  </link>
+
+  <joint name="torso_to_rightleg" type="continuous">
+    <parent link="torso"/>
+    <child link="r_upperleg"/>
+    <axis xyz="1 0 0"/>
+    
+    <origin rpy="0 0 0" xyz="0.05 0 -0.17"/>
+  </joint>
+
+  <link name="l_upperleg">
+    <visual>
+      <geometry>
+        <box size="0.05 0.1 .45"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.018 0. -0.21715"/>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.1 .45"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.018 -0.0 -0.21715"/>
+      <contact_coefficients mu="0.08" />
+    </collision>
+    <inertial>
+      <mass value="5"/>
+      <inertia ixx="0.2125" ixy="-0.005" ixz="0.0225" iyy="0.205" iyz="0.045" izz="0.0125"/>
+      <origin rpy="0 0 0" xyz="0.018 -0.0 -0.21715"/>
+    </inertial>
+  </link>
+
+  <joint name="lelfleg_to_rightleg" type="fixed">
+    <parent link="r_upperleg"/>
+    <child link="l_upperleg"/>
+    <origin rpy="0 0 0" xyz="-0.15 0 0"/>
+  </joint>
+
+
+</robot>
